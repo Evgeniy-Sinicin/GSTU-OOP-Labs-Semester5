@@ -1,10 +1,6 @@
 ﻿using Lab1.BussinessLogic.Helpers;
 using Lab1.BussinessLogic.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab1.BussinessLogic.Metrics
 {
@@ -23,18 +19,28 @@ namespace Lab1.BussinessLogic.Metrics
 
             for (int i = 0; i < actual.Length; i++)
             {
-                TruePositive += actual[i] == 1 && actual[i] == expected[i] ? 1 : 0;
-                TrueNegative += actual[i] == 0 && actual[i] == expected[i] ? 1 : 0;
-                FalsePositive += actual[i] == 1 && actual[i] != expected[i] ? 1 : 0;
-                FalseNegative += actual[i] == 0 && actual[i] != expected[i] ? 1 : 0;
+                TruePositive += expected[i] == 1 && actual[i] == expected[i] ? 1 : 0;
+                TrueNegative += expected[i] == 0 && actual[i] == expected[i] ? 1 : 0;
+                FalsePositive += expected[i] == 1 && actual[i] != expected[i] ? 1 : 0;
+                FalseNegative += expected[i] == 0 && actual[i] != expected[i] ? 1 : 0;
             }
 
-            double precision = TruePositive / (TruePositive + FalsePositive);
-            double recall = TruePositive / (TruePositive + FalseNegative);
-            double koef = 2;
-            double result = (precision + recall) == 0 ? 0 : koef * precision * recall / (precision + recall);
-
-            return result;
+            double accuracy = (TrueNegative + TruePositive) / (TrueNegative + TruePositive + FalsePositive + FalseNegative);
+            if(accuracy == 1)
+            {
+                return 1;
+            }
+            else if(accuracy == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                double precision = TruePositive / (TruePositive + FalsePositive);
+                double recall = TruePositive / (TruePositive + FalseNegative);
+                double koef = 2;
+                return koef * precision * recall / (precision + recall);
+            }
         }
 
         private void CheckArraysLength(int[] actual, int[] expected)
