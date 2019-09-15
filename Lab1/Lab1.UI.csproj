@@ -103,5 +103,11 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lab1.BussinessLogic\Lab1.BussinessLogic.csproj">
+      <Project>{7145B624-FE9B-455E-B99F-903966B9E3D3}</Project>
+      <Name>Lab1.BussinessLogic</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
