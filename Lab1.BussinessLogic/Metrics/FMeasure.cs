@@ -6,6 +6,12 @@ namespace Lab1.BussinessLogic.Metrics
 {
     public class FMeasure : IMeasurable
     {
+        /// <summary>
+        /// Вычисляет качество работы алгоритма
+        /// </summary>
+        /// <param name="actual">Массив с фактическими значениями</param>
+        /// <param name="expected">Массив с ожидаемыми значениями</param>
+        /// <returns></returns>
         public double CalculateQuality(int[] actual, int[] expected)
         {
             CheckArraysLength(actual, expected);
