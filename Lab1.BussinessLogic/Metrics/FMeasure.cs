@@ -32,7 +32,7 @@ namespace Lab1.BussinessLogic.Metrics
             double precision = TruePositive / (TruePositive + FalsePositive);
             double recall = TruePositive / (TruePositive + FalseNegative);
             double koef = 2;
-            double result = koef * precision * recall / (precision + recall);
+            double result = (precision + recall) == 0 ? 0 : koef * precision * recall / (precision + recall);
 
             return result;
         }
